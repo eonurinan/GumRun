@@ -5,10 +5,15 @@
 /// </summary>
 public class Door : MonoBehaviour
 {
-    void Update()
+    Rigidbody rb;
+    private void Start()
+    {
+        rb = GetComponent<Rigidbody>();
+    }
+    void FixedUpdate()
     {
         // Move the door every frame.
-        transform.Translate(new Vector3(-ConfigManager.instance.scrollSpeed, 0, 0));
+        rb.MovePosition(rb.position + new Vector3(-ConfigManager.instance.scrollSpeed, 0, 0));
     }
 
     void OnBecameInvisible()

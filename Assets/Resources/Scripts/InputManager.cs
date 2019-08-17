@@ -6,6 +6,15 @@ public class InputManager : MonoBehaviour
 
     void Update()
     {
+        //Debug
+            GameManager.instance.MorphShape(0);
+            GameManager.instance.BakeShapesCollider();
+        //End
+
+     /*   if (Input.GetKeyDown(KeyCode.K))
+        {
+            GameManager.instance.JumpPlayer();}
+     */   
         // If there is a touch on screen,
         if (Input.touchCount > 0)
         {
@@ -33,6 +42,8 @@ public class InputManager : MonoBehaviour
 
                 posPrev = touch.position;
             }
+
+
             // Re-bake the collider on every colliderRefreshInterval frames or when the finger is lifted
             if (Time.frameCount % ConfigManager.instance.colliderRefreshInterval == 0 || touch.phase == TouchPhase.Ended)
             {

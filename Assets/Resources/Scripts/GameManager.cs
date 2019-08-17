@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance = null;      // Singleton instance
     private int score = 0;                          // Score
+    private int coin = 0;                           // Coin
     private TextMeshProUGUI scoreText;              // Text component to show score
     private Shape shapePlayer;                      // Player's shape script
     private GameObject resButton;                   // Restart Button.
@@ -76,6 +77,11 @@ public class GameManager : MonoBehaviour
 
     }
 
+    public void AddCoin()
+    {
+        coin++;
+    }
+
     public void Restart()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
@@ -88,7 +94,7 @@ public class GameManager : MonoBehaviour
 
         while (dilationCoefficient < .3f)
         {
-            dilationCoefficient = Mathf.MoveTowards(dilationCoefficient, .3f, Time.deltaTime * .5f);
+            dilationCoefficient = Mathf.MoveTowards(dilationCoefficient, .35f, Time.deltaTime * .25f);
 
             scoreText.fontSharedMaterial.SetFloat(ShaderUtilities.ID_OutlineSoftness, dilationCoefficient);
             scoreText.fontSharedMaterial.SetFloat(ShaderUtilities.ID_FaceDilate, dilationCoefficient);
@@ -97,7 +103,7 @@ public class GameManager : MonoBehaviour
 
         while (dilationCoefficient > 0)
         {
-            dilationCoefficient = Mathf.MoveTowards(dilationCoefficient, 0, Time.deltaTime * .5f);
+            dilationCoefficient = Mathf.MoveTowards(dilationCoefficient, 0, Time.deltaTime * .35f);
             scoreText.fontSharedMaterial.SetFloat(ShaderUtilities.ID_OutlineSoftness, dilationCoefficient);
             scoreText.fontSharedMaterial.SetFloat(ShaderUtilities.ID_FaceDilate, dilationCoefficient);
             yield return null;

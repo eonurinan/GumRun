@@ -15,8 +15,7 @@ public class SpawnManager : MonoBehaviour
         startingPosX += road.transform.position.x;
         startingPosX += 10;
 
-        //1.3 is temporary
-        spawnPosition = new Vector3(startingPosX, 1.3f, 0);
+        spawnPosition = new Vector3(startingPosX, 0, 0);
 
         doorArray = Resources.LoadAll<GameObject>("Prefabs/Doors");
 
@@ -28,7 +27,6 @@ public class SpawnManager : MonoBehaviour
     {
         int rand = Random.Range(0, doorArray.Length);
 
-        // X rotation is -90 because blender's coordinate system is different, this is temporary.
-        Instantiate(doorArray[rand], spawnPosition, Quaternion.Euler(-90, 0, 0));
+        Instantiate(doorArray[rand], spawnPosition, Quaternion.Euler(0, 0, 0));
     }
 }

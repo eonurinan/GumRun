@@ -4,14 +4,17 @@ public class Shape : MonoBehaviour
 {
     private SkinnedMeshRenderer rend;       // Renderer
     private MeshCollider meshColl;          // Collider
+    private Rigidbody rb;
 
     #region Unity Callbacks
     void Start()
     {
+        rb = GetComponent<Rigidbody>();
         rend = GetComponent<SkinnedMeshRenderer>();
         meshColl = GetComponent<MeshCollider>();
         BakeCollider();
     }
+
     private void Update()
     {
 
@@ -22,6 +25,7 @@ public class Shape : MonoBehaviour
         Morph(scaleAnimCoeff);
 
     }
+
     #endregion
 
     //Changes object's BlendShape value to shift its shape.
@@ -40,4 +44,17 @@ public class Shape : MonoBehaviour
         rend.BakeMesh(bakedMesh);
         meshColl.sharedMesh = bakedMesh;
     }
+
+   // public void Jump()
+   // {
+  //      print("kk");
+   //     rb.AddForce(Vector3.up * ConfigManager.instance.jumpHeight, ForceMode.Impulse);
+     /*   if (Mathf.Approximately(transform.position.y, 0)){
+            iTween.MoveTo(gameObject, iTween.Hash("position", Vector3.up * ConfigManager.instance.jumpHeight, "time", 0.8f, "easeType", "easeInExpo" , "oncomplete", "Jump"));
+        }
+        else if (Mathf.Approximately(transform.position.y, 7.5f))
+        {
+            iTween.MoveTo(gameObject, iTween.Hash("position", Vector3.zero, "time", .5f, "easeType", "easeInExpo"));
+        }*/
+    
 }
